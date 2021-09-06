@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
-@Entity
+    @Entity
 	public class Books {
 		@Id
 		@Column
@@ -13,6 +13,8 @@ import javax.persistence.Id;
 		private String bookname;
 		@Column
 		private String author;
+		@Column
+		private int price;
 		public int getBookid() {
 			return bookid;
 		}
@@ -30,6 +32,12 @@ import javax.persistence.Id;
 		}
 		public void setAuthor(String author) {
 			this.author = author;
+		}
+		public int getPrice() {
+			return price;
+		}
+		public void setPrice(int price) {
+			this.price = price;
 		}
 		
 	}	

@@ -1,25 +1,13 @@
 package com.javatpoint.exception;
 
-public class errorDetail {
+public class ErrorDetail {
 	
-	public String message;
+	public String error;
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
-
-	public errorDetail() {
+	public ErrorDetail(String error) 
+	{
 		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	public errorDetail(String message) {
-		super();
-		this.message = message;
+		this.error = error;
 	}
 	
 	

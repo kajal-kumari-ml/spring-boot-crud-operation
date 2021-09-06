@@ -11,59 +11,51 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.javatpoint.main.Books;
-import com.javatpoint.service.Bookservice;
-
+import com.javatpoint.service.BookService;
 import java.util.List;
 
 @RestController
-public class booksController {
-	Logger logger=LoggerFactory.getLogger(booksController.class);
+public class BooksController {
+	
+	Logger logger=LoggerFactory.getLogger(BooksController.class);
 	
 	@Autowired 
-	Bookservice bookservice;
+	BookService bookservice;
 	 
-	@GetMapping("/Books")
-	public List<Books> getAllBooks()
+	@GetMapping("/books")
+	public List<Books> getallbooks()
 	{
 		return bookservice.getAllBooks();
 	}
-	@GetMapping("/Books/search")
+	@GetMapping("/books/search")
 	public List<Books> getnamebyId(@RequestParam String bookname)
 	{
 		logger.info("search for book "+bookname);
-		return bookservice.getBookbyName(bookname);
+		return bookservice.getBookByName(bookname);
 	}
-	
-	@GetMapping("/Books/{bookid}")
+	@GetMapping("/books/{bookid}")
 	public Books getBook(@PathVariable int bookid)
 	{
 		logger.info("logging into the get book by id"+ bookid);
 		return bookservice.getBookbyid(bookid);
 	}
-	
-	@DeleteMapping("/Books/{bookid}")
+	@DeleteMapping("/books/{bookid}")
 	public void DeletebyId(@PathVariable int bookid)
 	{
-		logger.warn("Delete the book info "+bookid);
 		bookservice.delete(bookid);
 	}
-	
-	@PostMapping("/Books")
+	@PostMapping("/books")
 	public int saveBook(@RequestBody Books books)
 	{
 		bookservice.saveOrupdate(books);
 		return books.getBookid();
 	}
-	
-	@PutMapping("/Books")
+	@PutMapping("/books")
 	public Books update(@RequestBody Books books)
 	{
 		logger.trace("update the books info");
 		bookservice.saveOrupdate(books);
-		return books;
-		
+		return books;	
 	}
-
 }
